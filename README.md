@@ -1,6 +1,18 @@
 # MyInterviews v1
 
 
+## Project Needs
+
+* Login Screen
+* Backend
+  * Authentication
+  * Saving Interviews (CRUD Operations)
+* Export to XLS and/or
+* Email support (email interview list)
+
+
+
+
 ## Available Scripts
 
 In the project directory, you can run:
@@ -28,3 +40,9 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
+#
+#
+#
+#
+#
+Credit: Contact @lenichols If you want to contribute!
