@@ -28,7 +28,49 @@
         </div>
     </div>
     <div class="page" id="form">
-        <div class="container"></div>
+        <header>
+            <div class="content">
+                <div class="logo">
+                    <h2><span>></span> My Interview <span><</span></h2>
+                    <h1>Diary</h1>
+                </div>
+                <div class="view-interview">
+                    <button>View my interviews</button>
+                </div>
+            </div>
+        </header>
+
+        <div class="container">
+            <h2>Enter the Details of Your Interview</h2>
+            <form action="">
+                <div class="details">
+                    <label for="date">Date</label>
+                    <input type="date" name="date" id="date">
+
+                    <label for="company">Company</label>
+                    <input type="text">
+
+                    <label for="category">Category</label>
+                    <select name="category" id="category">
+                        <option value="Technology" selected>Technology</option>
+                        <option value="Design">Design</option>
+                    </select>
+
+                    <p>Experience</p>
+                    <input type="radio" id="positive" name="experience">
+                    <label for="positive">Positive</label>
+                    <input type="radio" id="negative" name="experience">
+                    <label for="negative">Negative</label>
+                </div>
+                <div class="note">
+                    <label for="note"></label>
+                    <textarea name="note" id="note" cols="30" rows="10">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet velit nostrum blanditiis aperiam, quidem illo, dignissimos ipsa sit reiciendis error praesentium quaerat magnam in, asperiores alias rerum saepe est cum!
+                    </textarea>
+                    <button>Add an interview</button>
+                </div>
+            </form>
+        </div>
     </div>
     <div class="page" id="interviews">
         <div class="container">

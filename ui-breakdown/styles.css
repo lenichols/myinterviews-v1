@@ -141,7 +141,6 @@ html {
     text-decoration: underline;
 }
 
-
 #login footer {
     margin-top: auto;
     font-size: 0.8rem;
@@ -153,7 +152,53 @@ html {
     color: inherit;
 }
 
-  /* Interview page styles */
+/* Form page styles */
+#form header {
+    background-color: var(--brand-red);
+    margin-bottom: 3rem;
+}
+
+#form header .content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 auto;
+    padding: 2rem 0;
+    width: 80vw;
+}
+
+#form header .logo {
+    color: var(--brand-white);
+    text-align: center;
+    font-family: "Nunito Bold";
+}
+
+#form header .logo h1 {
+    text-transform: uppercase;
+    letter-spacing: 0.5rem;
+}
+
+#form header .logo h2 {
+    font-size: 0.85rem;
+}
+
+#form header .logo h2 span {
+    color: var(--brand-dark-pink);
+}
+
+#form header button {
+    color: var(--brand-white);
+    background-color: var(--brand-black);
+    text-transform: uppercase;
+    border: none;
+    font-family: "Nunito Regular";
+    padding: 0.35rem 2.5rem;
+    border-radius: 0.25rem;
+    font-size: 0.75rem;
+}
+
+
+/* Interview page styles */
 
   #interviews {
     background-color: var(--brand-red);
