@@ -85,10 +85,18 @@ html {
     color: var(--brand-red);
   }
 
-  #interviews .entry-footer .remove i {
-    background-color: var(--brand-red);
+  #interviews .entry-footer i {
     padding: 0.25rem;
     margin-right: 0.25rem;
+    border-radius: 0.25rem;
+  }
+
+  #interviews .entry-footer .edit i {
+    background-color: black;
+  }
+
+  #interviews .entry-footer .remove i {
+    background-color: var(--brand-red);
   }
 
 
