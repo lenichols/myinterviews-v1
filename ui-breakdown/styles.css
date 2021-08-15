@@ -28,13 +28,28 @@ html {
     --brand-red: #D34836;
     --brand-light-pink: #FFD1CB;
     --brand-dark-pink: #F4A99F;
+    --brand-white: #F7F7F7;
  } 
 
  /* General styles */
+ .page {
+     width: 100%;
+     min-height: 100vh;
+     background-color: var(--brand-white);
+ }
+
  .container {
     width: 80vw;
-    min-height: 100vh;
     margin: 0 auto;
+  }
+
+  /* Login page styles */
+  #login {
+      background-image: url("assets/images/mask.png"), url("assets/images/background.png");
+      background-position: 0, 12vw;
+      background-repeat: no-repeat;
+      background-size: cover;
+
   }
 
   /* Interview page styles */
