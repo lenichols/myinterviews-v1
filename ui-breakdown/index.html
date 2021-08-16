@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="assets/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="page" id="login">
+        <div class="container">
+            <header>
+                <h2><span>></span> My Interview <span><</span></h2>
+                <h1>Diary</h1>
+                <h4>Document + Journal + Reflect</h4>
+                <div class="google-auth">
+                    <button><i class="fab fa-google"></i>Sign in with Google</button>
+                    <p><a href="">Create an Account</a></p>
+                </div>
+            </header>
+            <footer>
+                <p>
+                    &copy; 2021-2022 My Interview Diary | All Rights Reversed. <a href="">Privacy Statement</a>
+                </p>
+            </footer>
+        </div>
+    </div>
+    <div class="page" id="form">
+        <header>
+            <div class="content">
+                <div class="logo">
+                    <h2><span>></span> My Interview <span><</span></h2>
+                    <h1>Diary</h1>
+                </div>
+                <div class="view-interview">
+                    <button>View my interviews</button>
+                </div>
+            </div>
+        </header>
+
+        <div class="container">
+            <h2>Enter the Details of Your Interview</h2>
+            <form action="">
+                <div class="details">
+                    <label for="date">Date</label>
+                    <input type="date" name="date" id="date">
+
+                    <label for="company">Company</label>
+                    <input type="text">
+
+                    <label for="category">Category</label>
+                    <select name="category" id="category">
+                        <option value="Technology" selected>Technology</option>
+                        <option value="Design">Design</option>
+                    </select>
+
+                    <fieldset>
+                        <legend>Experience</legend>
+                        <input type="radio" id="positive" name="experience">
+                        <label for="positive">Positive</label>
+                        <input type="radio" id="negative" name="experience">
+                        <label for="negative">Negative</label>
+                    </fieldset>
+                </div>
+                <div class="note">
+                    <label for="note">Note</label>
+                    <textarea name="note" id="note" cols="30" rows="10"></textarea>
+                    <button>Add an interview</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="page" id="interviews">
+        <div class="container">
+            <header class="top-header">
+                <h1>My Interviews</h1>
+                <div>Sort<i class="fas fa-sort-alpha-up"></i></div>
+            </header>
+            
+            <main class="entries">
+                <article class="entry">
+                    <header class="entry-header">
+                        <div>
+                            <time datetime="2021-09/12">09/12/2021</time>
+                            <h2>Walmart Labs, Inc.</h2>
+                            <h4>Technology</h4>
+                        </div>
+                        <div class="rating rating-positive">Positive Experience<i class="fas fa-thumbs-up"></i></div>
+                    </header>
+                    <p class="note">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sequi expedita suscipit sint deleniti neque enim tempore, eveniet incidunt amet quae libero reprehenderit quasi quaerat debitis cupiditate praesentium nihil quis nam!</p>
+                    <footer class="entry-footer">
+                        <div class="edit"><i class="fas fa-edit"></i>Edit</div>
+                        <div class="remove"><i class="fas fa-times"></i>Remove</div>
+                    </footer>
+                </article>
+
+                <article class="entry">
+                    <header class="entry-header">
+                        <div>
+                            <time datetime="2021-09/01">09/01/2021</time>
+                            <h2>Cisco</h2>
+                            <h4>Technology</h4>
+                        </div>
+                        <div class="rating rating-negative">Negative Experience<i class="fas fa-thumbs-down"></i></div>
+                    </header>
+                    <p class="note">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sequi expedita suscipit sint deleniti neque enim tempore, eveniet incidunt amet quae libero reprehenderit quasi quaerat debitis cupiditate praesentium nihil quis nam!</p>
+                    <footer class="entry-footer">
+                        <div class="edit"><i class="fas fa-edit"></i>Edit</div>
+                        <div class="remove"><i class="fas fa-times"></i>Remove</div>
+                    </footer>
+                </article>
+            </main>
+        </div>
+    </div>
+    <script>
+        const times = document.querySelectorAll("#interviews .entry-footer i");
+        for (let el of times) {
+            const bgColor = window.getComputedStyle(el.closest(".entry")).backgroundColor;
+            el.style.color = bgColor;
+        }
+    </script>
+</body>
+</html>
