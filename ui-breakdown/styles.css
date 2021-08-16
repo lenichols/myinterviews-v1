@@ -23,6 +23,12 @@ html {
     height: auto;
   }
 
+  fieldset {
+      border: 0;
+      margin: 0;
+      padding: 0;
+  }
+
   /* Custom properties */
  :root {
     --brand-red: #D34836;
@@ -30,6 +36,7 @@ html {
     --brand-dark-pink: #F4A99F;
     --brand-white: #F7F7F7;
     --brand-black: #2F2F2F;
+    --brand-light-gray: #e5e5e5;
  } 
 
  @font-face {
@@ -72,6 +79,10 @@ html {
       text-decoration: none;
   }
 
+  h1, h2, a, label, legend {
+      font-family: "Nunito Bold";
+  }
+
   /* Login page styles */
   #login {
       background-image: url("assets/images/grid.png"), url("assets/images/mask.png"), url("assets/images/background.png");
@@ -93,15 +104,11 @@ html {
   }
 
   #login header h1 {
-      font-family: "Nunito Bold";
       font-size: 4rem;
       text-transform: uppercase;
       letter-spacing: 1rem;
   }
 
-  #login header h2 {
-    font-family: "Nunito Bold";
-}
 
 #login header h2 span{
     color: var(--brand-red);
@@ -148,7 +155,6 @@ html {
 
 #login footer a {
     text-decoration: none;
-    font-family: "Nunito Bold";
     color: inherit;
 }
 
@@ -170,7 +176,6 @@ html {
 #form header .logo {
     color: var(--brand-white);
     text-align: center;
-    font-family: "Nunito Bold";
 }
 
 #form header .logo h1 {
@@ -186,15 +191,63 @@ html {
     color: var(--brand-dark-pink);
 }
 
-#form header button {
+#form button {
     color: var(--brand-white);
     background-color: var(--brand-black);
     text-transform: uppercase;
     border: none;
-    font-family: "Nunito Regular";
     padding: 0.35rem 2.5rem;
     border-radius: 0.25rem;
     font-size: 0.75rem;
+}
+
+#form .container h2 {
+    width: 12rem;
+    font-size: 1.7rem;
+    margin-bottom: 2.5rem;
+}
+
+#form form {
+    display: flex;
+    justify-content: space-between;
+}
+
+#form form input:not(input[type="radio"]),
+#form form select,
+#form form textarea {
+    margin-bottom: 1.5rem;
+    border-color: var(--brand-light-gray);
+    border-radius: 0.25rem;
+    min-height: 2.5rem;
+}
+
+#form form legend{
+    margin-bottom: 0.5rem;
+}
+
+#form form label, legend {
+    font-size: 0.75rem;
+}
+
+#form form textarea {
+    height: 16.5rem;
+}
+
+#form form .details {
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+}
+
+#form form .note {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+}
+
+#form form .note button {
+    width: 50%;
+    align-self: flex-end;
 }
 
 
