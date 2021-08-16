@@ -1,0 +1,336 @@
+/* Reset */
+html {
+    box-sizing: border-box;
+    font-size: 16px;
+  }
+  
+  *, *:before, *:after {
+    box-sizing: inherit;
+  }
+  
+  body, h1, h2, h3, h4, h5, h6, p, ol, ul {
+    margin: 0;
+    padding: 0;
+    font-weight: normal;
+  }
+  
+  ol, ul {
+    list-style: none;
+  }
+  
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  fieldset {
+      border: 0;
+      margin: 0;
+      padding: 0;
+  }
+
+  /* Custom properties */
+ :root {
+    --brand-red: #D34836;
+    --brand-light-pink: #FFD1CB;
+    --brand-dark-pink: #F4A99F;
+    --brand-white: #F7F7F7;
+    --brand-black: #2F2F2F;
+    --brand-light-gray: #e5e5e5;
+ } 
+
+ @font-face {
+     font-family: 'Nunito Regular';
+     src: url("assets/nunito/Nunito-Regular.ttf") format("truetype");
+ }
+
+ @font-face {
+    font-family: 'Nunito Bold';
+    src: url("assets/nunito/Nunito-Bold.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: 'Nunito Semi Bold';
+    src: url("assets/nunito/Nunito-SemiBold.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: 'Nunito Extra Bold';
+    src: url("assets/nunito/Nunito-ExtraBold.ttf") format("truetype");
+}
+
+ /* General styles */
+ .page {
+     width: 100%;
+     background-color: var(--brand-white);
+     color: var(--brand-black);
+     font-family: "Nunito Regular";
+ }
+
+ .container {
+    width: 80vw;
+    min-height: 100vh;
+    margin: 0 auto;
+  }
+
+  a {
+      cursor: pointer;
+      color: inherit;
+      text-decoration: none;
+  }
+
+  h1, h2, a, label, legend {
+      font-family: "Nunito Bold";
+  }
+
+  /* Login page styles */
+  #login {
+      background-image: url("assets/images/grid.png"), url("assets/images/mask.png"), url("assets/images/background.png");
+      background-position: 75vw 60vh, 0, 12vw;
+      background-repeat: no-repeat;
+      background-size: 12%, cover, cover;
+
+  }
+
+  #login .container {
+      display: flex;
+      flex-direction: column;
+      text-align: center;
+  }
+
+  #login header {
+      width: 18rem;
+      margin-top: 12rem;
+  }
+
+  #login header h1 {
+      font-size: 4rem;
+      text-transform: uppercase;
+      letter-spacing: 1rem;
+  }
+
+
+#login header h2 span{
+    color: var(--brand-red);
+}
+
+#login header h4 {
+    margin-top: -0.75rem;
+    font-size: 0.85rem;
+}
+
+#login header .google-auth {
+    margin-top: 2rem;
+}
+
+#login header .google-auth button {
+    width: 100%;
+    height: 3rem;
+    border: none;
+    background-color: var(--brand-red);
+    color: var(--brand-white);
+    border-radius: 0.25rem;
+    font-size: 1rem;
+}
+
+#login header .google-auth button i {
+    margin-right: 0.5rem;
+}
+
+#login header .google-auth p {
+    margin-top: 0.5rem;
+    font-size: 0.85rem;
+    color: var(--brand-red);
+}
+
+#login header .google-auth p a {
+    color: var(--brand-red);
+    text-decoration: underline;
+}
+
+#login footer {
+    margin-top: auto;
+    font-size: 0.8rem;
+}
+
+#login footer a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Form page styles */
+#form header {
+    background-color: var(--brand-red);
+    margin-bottom: 3rem;
+}
+
+#form header .content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 auto;
+    padding: 2rem 0;
+    width: 80vw;
+}
+
+#form header .logo {
+    color: var(--brand-white);
+    text-align: center;
+}
+
+#form header .logo h1 {
+    text-transform: uppercase;
+    letter-spacing: 0.5rem;
+}
+
+#form header .logo h2 {
+    font-size: 0.85rem;
+}
+
+#form header .logo h2 span {
+    color: var(--brand-dark-pink);
+}
+
+#form button {
+    color: var(--brand-white);
+    background-color: var(--brand-black);
+    text-transform: uppercase;
+    border: none;
+    padding: 0.35rem 2.5rem;
+    border-radius: 0.25rem;
+    font-size: 0.75rem;
+}
+
+#form .container h2 {
+    width: 12rem;
+    font-size: 1.7rem;
+    margin-bottom: 2.5rem;
+}
+
+#form form {
+    display: flex;
+    justify-content: space-between;
+}
+
+#form form input:not(input[type="radio"]),
+#form form select,
+#form form textarea {
+    margin-bottom: 1.5rem;
+    border-color: var(--brand-light-gray);
+    border-radius: 0.25rem;
+    min-height: 2.5rem;
+}
+
+#form form legend{
+    margin-bottom: 0.5rem;
+}
+
+#form form label, legend {
+    font-size: 0.75rem;
+}
+
+#form form textarea {
+    height: 16.5rem;
+}
+
+#form form .details {
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+}
+
+#form form .note {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+}
+
+#form form .note button {
+    width: 50%;
+    align-self: flex-end;
+}
+
+
+/* Interview page styles */
+
+  #interviews {
+    background-color: var(--brand-red);
+  }
+
+  #interviews header, #interviews footer {
+      display: flex;
+      justify-content: space-between;
+  }
+
+  #interviews .top-header {
+    color: var(--brand-white);
+    padding: 4rem 1rem 2rem;
+    align-items: flex-end;
+  }
+
+  #interviews .top-header i {
+    margin-left: 0.5rem;
+  }
+
+  #interviews .entry:nth-child(odd) {
+      background-color: var(--brand-light-pink);
+  }
+
+  #interviews .entry:nth-child(even) {
+    background-color: var(--brand-dark-pink);
+}
+
+  #interviews .entry {
+    display: flex;
+    flex-direction: column;
+    min-height: 18rem;
+    padding: 2rem 4rem;
+  }
+
+  #interviews .entry .rating {
+      font-family: "Nunito Bold";
+  }
+
+  #interviews .entry .rating i {
+    margin-left: 0.25rem;
+}
+
+  #interviews .entry-header {
+      align-items: flex-start;
+  }
+
+  #interviews .entry-header h2 {
+    margin: 0.5rem 0;
+}
+
+  #interviews .entry-footer {
+      margin-top: auto;
+      font-family: "Nunito Bold";
+  }
+
+  #interviews .entry-footer .remove {
+    color: var(--brand-red);
+  }
+
+  #interviews .entry-footer i {
+    padding: 0.25rem;
+    margin-right: 0.25rem;
+    border-radius: 0.25rem;
+  }
+
+  #interviews .entry-footer .edit i {
+    background-color: var(--brand-black);
+  }
+
+  #interviews .entry-footer .remove i {
+    background-color: var(--brand-red);
+  }
+
+
+  #interviews .note {
+      margin-top: 1.5rem;
+  }
+
+  #interviews .rating-negative {
+      color: var(--brand-red);
+  }
