@@ -268,6 +268,10 @@ html {
     align-items: flex-end;
   }
 
+  #interviews .top-header i {
+    margin-left: 0.5rem;
+  }
+
   #interviews .entry:nth-child(odd) {
       background-color: var(--brand-light-pink);
   }
@@ -283,6 +287,14 @@ html {
     padding: 2rem 4rem;
   }
 
+  #interviews .entry .rating {
+      font-family: "Nunito Bold";
+  }
+
+  #interviews .entry .rating i {
+    margin-left: 0.25rem;
+}
+
   #interviews .entry-header {
       align-items: flex-start;
   }
@@ -293,6 +305,7 @@ html {
 
   #interviews .entry-footer {
       margin-top: auto;
+      font-family: "Nunito Bold";
   }
 
   #interviews .entry-footer .remove {
