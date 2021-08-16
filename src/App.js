@@ -27,6 +27,20 @@ const App = () => {
   /* Initialize Firebase */
   firebase.initializeApp(firebaseConfig);
 
+  /* Sign up New Users */
+  firebase.auth().createUserWithEmailAndPassword(email, password)
+  .then((userCredential) => {
+    // Signed in 
+    var user = userCredential.user;
+    // ...
+  })
+  .catch((error) => {
+    var errorCode = error.code;
+    var errorMessage = error.message;
+    // ..
+  });
+
+
   const [interviews, setInterviews] = useState([
       {
           id: 1,

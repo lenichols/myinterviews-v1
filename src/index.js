@@ -20,3 +20,17 @@ ReactDOM.render(
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
+
+/* OAuth Localization */
+firebase.auth().useDeviceLanguage();
+
+/* Sign in with redirecting to signin page */
+firebase.auth().signInWithRedirect(provider);
+
+/* To sign out a user*/
+firebase.auth().signOut().then(() => {
+  // Sign-out successful.
+}).catch((error) => {
+  // An error happened.
+});
+
