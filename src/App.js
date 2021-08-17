@@ -1,13 +1,45 @@
 import Header from './components/Header';
 import Interviews from './components/Interviews';
 import AddInterview from './components/AddInterview';
-import { useState } from "react"
+import { useState } from "react";
+import firebase from 'firebase/app';
+import 'firebase/auth';
+import 'firebase/firestone';
 
 import './App.css';
 
 const App = () => {
 
-  const [showAddInterview, setShowAddInterview] = useState(false)
+  const [showAddInterview, setShowAddInterview] = useState(false);
+
+  /* Firebase Configuration */
+  const firebaseConfig = {
+    // Firebase 
+    apiKey: `${process.env.API_KEY}`,
+    authDomain: "my-interview-diary.firebaseapp.com",
+    databaseURL: "https://my-interview-diary.firebaseio.com",
+    projectId: "my-interview-diary",
+    storageBucket: "my-interview-diary.appspot.com",
+    messagingSenderId: "SENDER_ID",
+    appId: "my-interview-diary",
+  };
+
+  /* Initialize Firebase */
+  firebase.initializeApp(firebaseConfig);
+
+  /* Sign up New Users */
+  firebase.auth().createUserWithEmailAndPassword(email, password)
+  .then((userCredential) => {
+    // Signed in 
+    var user = userCredential.user;
+    // ...
+  })
+  .catch((error) => {
+    var errorCode = error.code;
+    var errorMessage = error.message;
+    // ..
+  });
+
 
   const [interviews, setInterviews] = useState([
       {
