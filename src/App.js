@@ -6,7 +6,11 @@ import firebase from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/firestone';
 
+import Login from './components/Login';
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import './App.css';
+import Dashboard from './components/Dashboard';
+import PrivacyPolicy from './components/PrivacyPolicy';
 
 const App = () => {
 
@@ -72,27 +76,23 @@ const App = () => {
       }
   ]);
 
-  const addInterview = (interview => {
-    console.log("add", interview);
-    const id = Math.floor(Math.random() * 10000) + 1;
-    const newInterviewEntry = { id, ...interview }
-    setInterviews([...interviews, newInterviewEntry]);
-  })
-
-  const deleteInterview = (id => {
-    console.log('deelete', id);
-    setInterviews(interviews.filter((interview) => interview.id !== id))
-  })
-
   return (
-    <div className="container">
-      <Header onAdd={() => setShowAddInterview(!showAddInterview)} showAdd={showAddInterview} />
-      {showAddInterview && <AddInterview onAdd={addInterview} />}
-      {interviews.length > 0 ? (<Interviews 
-        interviews={interviews} 
-        onDelete={deleteInterview}
-      />) : ( 'No Tasks to Show!') }
-    </div>
+    <Router>
+      <Switch>
+        <Route path="/login">
+          <Login />
+        </Route>
+        <Route path="/dashboard">
+          <Dashboard />
+        </Route>
+        <Route exact path="/">
+          <Dashboard />
+        </Route>
+        <Route path="/privacy">
+          <PrivacyPolicy />
+        </Route>
+      </Switch>
+    </Router>
   );
 }
 
