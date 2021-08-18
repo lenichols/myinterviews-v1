@@ -8,12 +8,14 @@ export default function Signup() {
     const emailRef = useRef();
     const passwordRef = useRef();
     const passwordConfirmRef = useRef();
-    const { Signup } = useAuth()
+    const { SignupFirebase } = useAuth()
     const [error, setError] = useState("")
     const [loading, setLoading] = useState(false)
 
     async function handleSubmit(e) {
-        e.preventDefault()
+        e.preventDefault();
+
+        console.log("thissssssssss");
 
         if (passwordRef.current.value !== passwordConfirmRef.current.value) {
             return setError('Passwords do not match')
@@ -22,7 +24,7 @@ export default function Signup() {
         try {
             setError('')
             setLoading(true)
-            await Signup(emailRef.current.value, passwordRef.current.value)
+            await SignupFirebase(emailRef.current.value, passwordRef.current.value)
         } catch {
             setError('Failed to create an account')
         }  
@@ -35,7 +37,7 @@ export default function Signup() {
               <Card.Body>
                 <h2 className="text-center mb-4">Sign Up</h2>
                 {error && <Alert variant="danger">{error}</Alert>} 
-                    <Form onSubmit={handleSubmit}>
+                    <form onSubmit={handleSubmit}>
                         <Form.Group id="email">
                             <Form.Label>Email</Form.Label>
                             <Form.Control type="email" ref={emailRef} required />
@@ -48,8 +50,8 @@ export default function Signup() {
                             <Form.Label>Password Confirmation</Form.Label>
                             <Form.Control type="password" ref={passwordConfirmRef} required />
                         </Form.Group>  
-                        <Button disabled={loading} className="w-100" type="submit">Sign Up</Button>
-                    </Form>
+                        <button disabled={loading} className="w-100" type="submit">Sign Up</button>
+                    </form>
                 </Card.Body >
 
           <div className="w-100 text-center mt-2" >
