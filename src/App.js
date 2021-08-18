@@ -1,13 +1,13 @@
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { useState } from "react";
+
+import Signup from './components/Signup';
+import Login from './components/Login';
+import { AuthProvider } from "./components/contexts/AuthContext";
+
 import Header from './components/Header';
 import Interviews from './components/Interviews';
 import AddInterview from './components/AddInterview';
-import { useState } from "react";
-import firebase from 'firebase/app';
-import 'firebase/auth';
-import 'firebase/firestone';
-
-import Login from './components/Login';
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import './App.css';
 import Dashboard from './components/Dashboard';
 import PrivacyPolicy from './components/PrivacyPolicy';
@@ -15,35 +15,6 @@ import PrivacyPolicy from './components/PrivacyPolicy';
 const App = () => {
 
   const [showAddInterview, setShowAddInterview] = useState(false);
-
-  /* Firebase Configuration */
-  const firebaseConfig = {
-    // Firebase 
-    apiKey: `${process.env.API_KEY}`,
-    authDomain: "my-interview-diary.firebaseapp.com",
-    databaseURL: "https://my-interview-diary.firebaseio.com",
-    projectId: "my-interview-diary",
-    storageBucket: "my-interview-diary.appspot.com",
-    messagingSenderId: "SENDER_ID",
-    appId: "my-interview-diary",
-  };
-
-  /* Initialize Firebase */
-  firebase.initializeApp(firebaseConfig);
-
-  /* Sign up New Users */
-  firebase.auth().createUserWithEmailAndPassword(email, password)
-  .then((userCredential) => {
-    // Signed in 
-    var user = userCredential.user;
-    // ...
-  })
-  .catch((error) => {
-    var errorCode = error.code;
-    var errorMessage = error.message;
-    // ..
-  });
-
 
   const [interviews, setInterviews] = useState([
       {
@@ -78,7 +49,9 @@ const App = () => {
 
   return (
     <Router>
-      <Switch>
+     <AuthProvider> 
+      <Switch> 
+        <Route path="/signup" component={Signup} />
         <Route path="/login">
           <Login />
         </Route>
@@ -92,6 +65,7 @@ const App = () => {
           <PrivacyPolicy />
         </Route>
       </Switch>
+      </AuthProvider>
     </Router>
   );
 }
