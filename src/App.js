@@ -48,9 +48,9 @@ const App = () => {
   ]);
 
   return (
-    <Router>
-     <AuthProvider> 
+    <Router>  
       <Switch> 
+      <AuthProvider> 
         <Route path="/signup" component={Signup} />
         <Route path="/login">
           <Login />
@@ -61,11 +61,11 @@ const App = () => {
         <Route exact path="/">
           <Dashboard />
         </Route>
+        </AuthProvider>
         <Route path="/privacy">
           <PrivacyPolicy />
-        </Route>
+      </Route>
       </Switch>
-      </AuthProvider>
     </Router>
   );
 }
