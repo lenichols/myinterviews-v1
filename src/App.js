@@ -1,16 +1,16 @@
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { useState } from "react";
 
-import Signup from './components/Signup';
+import SignUp from './components/SignUp';
 import Login from './components/Login';
-import { AuthProvider } from "./components/contexts/AuthContext";
-
 import Header from './components/Header';
 import Interviews from './components/Interviews';
 import AddInterview from './components/AddInterview';
 import './App.css';
 import Dashboard from './components/Dashboard';
 import PrivacyPolicy from './components/PrivacyPolicy';
+import UserProvider from "./providers/UserProvider";
+
 
 const App = () => {
 
@@ -50,8 +50,10 @@ const App = () => {
   return (
     <Router>  
       <Switch> 
-      <AuthProvider> 
-        <Route path="/signup" component={Signup} />
+      <UserProvider>
+        <Route path="/signup">
+          <SignUp />
+        </Route>
         <Route path="/login">
           <Login />
         </Route>
@@ -61,7 +63,7 @@ const App = () => {
         <Route exact path="/">
           <Dashboard />
         </Route>
-        </AuthProvider>
+        </UserProvider>
         <Route path="/privacy">
           <PrivacyPolicy />
       </Route>

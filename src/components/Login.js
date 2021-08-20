@@ -7,13 +7,17 @@ import Footer from './Footer';
 const Login = () => {
     const history = useHistory();
     const handleDashboardClick = () => history.push('/dashboard');
+    const handleSignUpClick = () => history.push('/signup');
 
     return (
         <div>
-            thus sthis
-            this is login
             <br/>
+            This is Log In
             <Button color="purple" text="Go to Dashboard" onClick={handleDashboardClick} />
+            <br/>
+            Sign Up
+            <Button color="blue" text="Go to Sign Up" onClick={handleSignUpClick} />
+            <br/>
             <Footer />
         </div>
     )
