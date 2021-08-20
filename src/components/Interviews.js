@@ -1,4 +1,7 @@
 import Interview from './Interview'
+import './Interviews.css';
+
+
 const Interviews = ({ interviews, onDelete }) => {
     return (
         <>

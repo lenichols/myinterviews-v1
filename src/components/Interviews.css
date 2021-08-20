@@ -1,0 +1,84 @@
+
+/* Interview page styles */
+
+#interviews {
+    background-color: var(--brand-red);
+  }
+
+  #interviews header, #interviews footer {
+      display: flex;
+      justify-content: space-between;
+  }
+
+  #interviews .top-header {
+    color: var(--brand-white);
+    padding: 4rem 1rem 2rem;
+    align-items: flex-end;
+  }
+
+  #interviews .top-header i {
+    margin-left: 0.5rem;
+  }
+
+  #interviews .entry:nth-child(odd) {
+      background-color: var(--brand-light-pink);
+  }
+
+  #interviews .entry:nth-child(even) {
+    background-color: var(--brand-dark-pink);
+}
+
+  #interviews .entry {
+    display: flex;
+    flex-direction: column;
+    min-height: 18rem;
+    padding: 2rem 4rem;
+  }
+
+  #interviews .entry .rating {
+      font-family: "Nunito Bold";
+  }
+
+  #interviews .entry .rating i {
+    margin-left: 0.25rem;
+}
+
+  #interviews .entry-header {
+      align-items: flex-start;
+  }
+
+  #interviews .entry-header h2 {
+    margin: 0.5rem 0;
+}
+
+  #interviews .entry-footer {
+      margin-top: auto;
+      font-family: "Nunito Bold";
+  }
+
+  #interviews .entry-footer .remove {
+    color: var(--brand-red);
+  }
+
+  #interviews .entry-footer i {
+    padding: 0.25rem;
+    margin-right: 0.25rem;
+    border-radius: 0.25rem;
+  }
+
+  #interviews .entry-footer .edit i {
+    background-color: var(--brand-black);
+  }
+
+  #interviews .entry-footer .remove i {
+    background-color: var(--brand-red);
+  }
+
+
+  #interviews .note {
+      margin-top: 1.5rem;
+  }
+
+  #interviews .rating-negative {
+      color: var(--brand-red);
+  }
