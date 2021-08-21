@@ -1,13 +1,10 @@
 import React, { useState } from "react";
 import { Link } from "@reach/router";
-<<<<<<< HEAD
 import Button from './Button'
 import './SignUp.css';
 import Footer from "./Footer";
-=======
 import { generateUserDocument } from '../firebase/firebase';
 
->>>>>>> master
 
 const SignUp = () => {
   const [email, setEmail] = useState("");
@@ -99,15 +96,12 @@ const SignUp = () => {
             Sign up
           </button>
         </form>
-<<<<<<< HEAD
         <p className="form form textarea">or</p>
         <button
           className="bg-red-500 hover:bg-red-600 w-full py-2 text-white"
         >
           Sign In with Google
         </button>
-=======
->>>>>>> master
         <p className="text-center my-3">
           Already have an account?{" "}
           <Link to="/login" className="text-blue-500 hover:text-blue-600">

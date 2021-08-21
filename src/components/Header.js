@@ -6,14 +6,11 @@ import { useLogout } from "./LoginContext";
 const Header = ({ title, onAdd, showAdd }) => {
     let logoutUpdate  = useLogout();
 
-<<<<<<< HEAD
     const onClick = (e) => {
         console.log("header button click");
     }
 
     
-=======
->>>>>>> master
     return (
         <header className="header">
             <h1>{title}</h1>
