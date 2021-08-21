@@ -17,19 +17,21 @@ const SignIn = () => {
     let isLoggedIn  = useLogin();
 
     return (
-      <div class="page" id="login">
-          <div class="container">
+      <div className="row h-100" id="login">
+          <div className="container col-lg-12 offset-md-2 my-auto">
              {/* <header> */}
                   <h2><span></span> My Interview <span></span></h2>
                   <h1>Diary</h1>
                   <h4>Document + Journal + Reflect</h4>
             {/*}  </header> */}
               <br/>
-              <button
-            className="bg-red-500 hover:bg-red-600 w-full py-2 text-white" onClick={isLoggedIn}
+              <div className="text-center">
+              <button type="button"
+            className="btn btn-danger col-sm-6" onClick={isLoggedIn}
           >
             Sign in with Google
           </button>
+          </div>
               <Footer />
           </div>
       </div>

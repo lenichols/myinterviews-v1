@@ -1,0 +1,9 @@
+.intheader {
+    background-color: #D34836;
+    height: 100px;
+    padding: 2% 7% 7% 7%; 
+} 
+
+.pull-button-right {
+    float: right;
+}

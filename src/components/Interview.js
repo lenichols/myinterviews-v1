@@ -4,7 +4,7 @@ import './Interviews.css'
 
 const Interview = ({ interview, onDelete }) => {
     return (
-        <div className="container">
+        <div className="">
         <header>
             <div className="task">
                 <h3>{interview.companyName}

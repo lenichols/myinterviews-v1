@@ -4,8 +4,8 @@ import './Interviews.css'
 const Interviews = ({ interviews, onDelete }) => {
     return (
         <>
-        <div class="page" id="login">
-        <div class="container">
+        <div className="page" id="login">
+        <div className="">
           <header>
            {interviews.map((interview)=> (
             <Interview key={interview.id} interview={interview} onDelete={onDelete} />

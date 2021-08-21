@@ -6,6 +6,7 @@ import PrivacyPolicy from './components/PrivacyPolicy';
 import Dashboard from './components/Dashboard';
 import { LoginProvider } from "./components/LoginContext";
 import AddInterview from "./components/AddInterview";
+import 'bootstrap/dist/css/bootstrap.css';
 
 export const LoginUserContext = React.createContext();
 
