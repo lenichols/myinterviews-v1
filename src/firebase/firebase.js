@@ -1,7 +1,8 @@
-import { useHistory } from "react-router";
 import firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/firestore";
+import { useLogin, useLoginUpdate } from "../components/LoginContext";
+
 
 /* Firebase Configuration */
 const firebaseConfig = {
@@ -26,28 +27,17 @@ const provider = new firebase.auth.GoogleAuthProvider();
 // const [error, setError] = useState(null);
 
 export const signInWithGoogle = () => {
-
     auth.signInWithPopup(provider).then((result) => {
-    var credential = result.credential;
-
-    // This gives you a Google Access Token. You can use it to access the Google API.
-    var token = credential.accessToken;
-    // The signed-in user info.
-    var user = result.user;
-
-    // ...
-  }).catch((error) => {
-
-    console.log("error: ", error);
-
-  });
+      var credential = result.credential;
+      // This gives you a Google Access Token. You can use it to access the Google API.
+      var token = credential.accessToken;
+      // The signed-in user info.
+      var user = result.user;
+      
+    }).catch((error) => {
+      console.log("error: ", error);
+    });
 }
-    
-
-
-
-
-
 
 const e1 = function()  {
     let u = '', i = 0;
@@ -58,10 +48,10 @@ const e1 = function()  {
   return u.toString();
 }
 
-export const generateUserDocument = async (usercred, password) => {
 
+
+export const generateUserDocument = async (usercred, password) => {
   if (!usercred) return;
-  
   const uid = e1();
   const userRef = firestore.doc(`users/${uid}`);
   const snapshot = await userRef.get();

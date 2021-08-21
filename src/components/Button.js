@@ -2,14 +2,6 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 const Button = ({ color, text, onClick}) => {
-
-    const setAdd = (e) => {
-        e.preventDefault();
-        console.log("ADD:::::::");
-        console.log("\n\n");
-    }
-
-
     return (
         <button 
             className="btn"
