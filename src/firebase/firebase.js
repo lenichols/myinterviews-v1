@@ -1,7 +1,8 @@
 import firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/firestore";
-import { functions } from "firebase";
+import { useLogin, useLoginUpdate } from "../components/LoginContext";
+
 
 /* Firebase Configuration */
 const firebaseConfig = {
@@ -20,34 +21,59 @@ export const auth = firebase.auth();
 export const firestore = firebase.firestore();
 
 const provider = new firebase.auth.GoogleAuthProvider();
+
+// const [displayName, setDisplayName] = useState('');
+// const [isLoggedIn, setIsLoggedIn] = useState('');
+// const [error, setError] = useState(null);
+
 export const signInWithGoogle = () => {
-  auth.signInWithPopup(provider);
-};
+    auth.signInWithPopup(provider).then((result) => {
+      var credential = result.credential;
+      // This gives you a Google Access Token. You can use it to access the Google API.
+      var token = credential.accessToken;
+      // The signed-in user info.
+      var user = result.user;
+      
+    }).catch((error) => {
+      console.log("error: ", error);
+    });
+}
 
-export const generateUserDocument = async (user, additionalData) => {
-  if (!user) return;
+const e1 = function()  {
+    let u = '', i = 0;
+    while(i++ < 36) {
+        var c = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'[i-1],r=Math.random()*16|0,v=c=='x'?r:(r&0x3|0x8);
+        u += (c=='-'|| c=='4') ? c: v.toString(16)
+    }
+  return u.toString();
+}
 
-  const userRef = firestore.doc(`users/${user.uid}`);
+
+
+export const generateUserDocument = async (usercred, password) => {
+  if (!usercred) return;
+  const uid = e1();
+  const userRef = firestore.doc(`users/${uid}`);
   const snapshot = await userRef.get();
 
   if (!snapshot.exists) {
-    const { email, displayName, photoURL } = user;
+    const { email, displayName, photoURL } = usercred;
     try {
       await userRef.set({
         displayName,
-        email,
-        photoURL,
-        ...additionalData
+        email
       });
     } catch (error) {
       console.error("Error creating user document", error);
     }
   }
-  return getUserDocument(user.uid);
+  return getUserDocument(usercred.uid);
 };
 
 const getUserDocument = async uid => {
+
   if (!uid) return null;
+
   try {
     const userDocument = await firestore.doc(`users/${uid}`).get();
 
@@ -55,6 +81,9 @@ const getUserDocument = async uid => {
       uid,
       ...userDocument.data()
     };
+
+    //redirect
+
   } catch (error) {
     console.error("Error fetching user", error);
   }
