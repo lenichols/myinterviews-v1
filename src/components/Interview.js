@@ -1,5 +1,6 @@
 import { red } from 'chalk'
 import { FaTimes } from 'react-icons/fa'
+import './Interviews.css'
 
 const Interview = ({ interview, onDelete }) => {
     return (
