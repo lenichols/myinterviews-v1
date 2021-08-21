@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 const Header = ({ title, onAdd, showAdd }) => {
 
     const onClick = (e) => {
-        console.log("heqder button click");
+        console.log("header button click");
     }
 
     

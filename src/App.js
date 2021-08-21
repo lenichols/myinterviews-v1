@@ -63,6 +63,9 @@ const App = () => {
         <Route path="/Interviews">
           <Interviews />
         </Route>
+        <Route path="/AddInterview">
+          <AddInterview />
+        </Route>
         <Route exact path="/">
           <Dashboard />
         </Route>
