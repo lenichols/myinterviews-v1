@@ -1,12 +1,24 @@
 import React, { useState } from "react";
 import { Link } from "@reach/router";
+import { generateUserDocument } from '../firebase/firebase';
+
+
 const SignUp = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [displayName, setDisplayName] = useState("");
+  const [isLoggedIn, setIsLoggedIn] = useState('');
   const [error, setError] = useState(null);
   const createUserWithEmailAndPasswordHandler = (event, email, password) => {
+    console.log("ccc");
     event.preventDefault();
+
+    generateUserDocument({
+      displayName,
+      email
+    }, password);
+
+
     setEmail("");
     setPassword("");
     setDisplayName("");
@@ -76,16 +88,10 @@ const SignUp = () => {
             Sign up
           </button>
         </form>
-        <p className="text-center my-3">or</p>
-        <button
-          className="bg-red-500 hover:bg-red-600 w-full py-2 text-white"
-        >
-          Sign In with Google
-        </button>
         <p className="text-center my-3">
           Already have an account?{" "}
-          <Link to="/" className="text-blue-500 hover:text-blue-600">
-            Sign in here
+          <Link to="/login" className="text-blue-500 hover:text-blue-600">
+            Sign In with Google Here
           </Link>
         </p>
       </div>
