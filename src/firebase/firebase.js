@@ -18,10 +18,11 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 
 export const auth = firebase.auth();
+
 export const firestore = firebase.firestore();
 
 const provider = new firebase.auth.GoogleAuthProvider();
-
+const database = firebase.database();
 // const [displayName, setDisplayName] = useState('');
 // const [isLoggedIn, setIsLoggedIn] = useState('');
 // const [error, setError] = useState(null);
@@ -33,7 +34,7 @@ export const signInWithGoogle = () => {
       var token = credential.accessToken;
       // The signed-in user info.
       var user = result.user;
-      
+      window.localStorage.setItem("userid", JSON.stringify(result.uid));
     }).catch((error) => {
       console.log("error: ", error);
     });
@@ -48,14 +49,11 @@ const e1 = function()  {
   return u.toString();
 }
 
-
-
 export const generateUserDocument = async (usercred, password) => {
   if (!usercred) return;
   const uid = e1();
   const userRef = firestore.doc(`users/${uid}`);
   const snapshot = await userRef.get();
-
   if (!snapshot.exists) {
     const { email, displayName, photoURL } = usercred;
     try {
@@ -71,20 +69,29 @@ export const generateUserDocument = async (usercred, password) => {
 };
 
 const getUserDocument = async uid => {
-
-  if (!uid) return null;
-
+  if (!uid) return null
   try {
     const userDocument = await firestore.doc(`users/${uid}`).get();
-
     return {
       uid,
       ...userDocument.data()
     };
-
-    //redirect
-
+    //redirec
   } catch (error) {
     console.error("Error fetching user", error);
   }
 };
+
+const saveInterview = async payload => {
+  if (!payload) return null;
+  const getUserId = window.localStorage.getItem("userid");
+  try {
+    auth.database().ref('users/' + getUserId).set({
+        // username: name,
+        // email: email,
+        // profile_picture : imageUrl
+    });
+  } catch (error) {
+    console.error("Error creating", error);
+  
+}
