@@ -86,12 +86,27 @@ const saveInterview = async payload => {
   if (!payload) return null;
   const getUserId = window.localStorage.getItem("userid");
   try {
-    auth.database().ref('users/' + getUserId).set({
-        // username: name,
-        // email: email,
-        // profile_picture : imageUrl
+    auth.database().ref('interviews/' + getUserId).set({
+        // company: payload.company,
+        // date: payload.date,
+        // note: payload.note
     });
   } catch (error) {
-    console.error("Error creating", error);
-  
+    console.error("Error creating interview", error);
+  }
+}
+
+const getInterviews = async () => {
+  const getUserId = window.localStorage.getItem("userid");
+  const dbRef = firebase.database().ref();
+  dbRef.child("interviews").child(getUserId).get().then((snapshot) => {
+    if (snapshot.exists()) {
+      console.log(snapshot.val());
+    } else {
+      console.log("No data available");
+    }
+  }).catch((error) => {
+    console.error(error);
+  });
+
 }
