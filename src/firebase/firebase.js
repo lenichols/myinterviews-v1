@@ -23,6 +23,8 @@ export const firestore = firebase.firestore();
 
 const provider = new firebase.auth.GoogleAuthProvider();
 const database = firebase.database();
+const getUserId = window.localStorage.getItem("userid");
+
 // const [displayName, setDisplayName] = useState('');
 // const [isLoggedIn, setIsLoggedIn] = useState('');
 // const [error, setError] = useState(null);
@@ -84,7 +86,6 @@ const getUserDocument = async uid => {
 
 const saveInterview = async payload => {
   if (!payload) return null;
-  const getUserId = window.localStorage.getItem("userid");
   try {
     auth.database().ref('interviews/' + getUserId).set({
         // company: payload.company,
@@ -97,7 +98,6 @@ const saveInterview = async payload => {
 }
 
 const getInterviews = async () => {
-  const getUserId = window.localStorage.getItem("userid");
   const dbRef = firebase.database().ref();
   dbRef.child("interviews").child(getUserId).get().then((snapshot) => {
     if (snapshot.exists()) {
@@ -108,5 +108,18 @@ const getInterviews = async () => {
   }).catch((error) => {
     console.error(error);
   });
+}
 
+const removeInterviews = async itemToRemove => {
+  try {
+    auth.database().ref('interviews/' + getUserId + '/' + itemToRemove).remove()
+    .then(function() {
+      console.log("Remove succeeded.")
+    })
+    .catch(function(error) {
+      console.log("Remove failed: " + error.message)
+    });
+  } catch (error) {
+    console.error("Error calling remove interview", error);
+  }
 }
