@@ -1,7 +1,13 @@
 import React, { useState } from "react";
 import { Link } from "@reach/router";
+<<<<<<< HEAD
+import Button from './Button'
+import './SignUp.css';
+import Footer from "./Footer";
+=======
 import { generateUserDocument } from '../firebase/firebase';
 
+>>>>>>> master
 
 const SignUp = () => {
   const [email, setEmail] = useState("");
@@ -34,15 +40,20 @@ const SignUp = () => {
     }
   };
   return (
-    <div className="mt-8">
-      <h1 className="text-3xl mb-2 text-center font-bold">Sign Up</h1>
-      <div className="border border-blue-400 mx-auto w-11/12 md:w-2/4 rounded py-8 px-4 md:px-8">
+    <div class="page" id="SignUp">
+      <div class="container">
+      <header>
+      <h2><span></span> Sign Up <span></span></h2>
+      </header>
+      {/*<h1 className="text-3xl mb-2 text-center font-bold">Sign Up</h1> */}
+      </div>
+      <div className="container">
         {error !== null && (
-          <div className="py-4 bg-red-600 w-full text-white text-center mb-3">
+          <div className="container">
             {error}
           </div>
         )}
-        <form className="">
+        <form className="form form .note button">
           <label htmlFor="displayName" className="block">
             Display Name:
           </label>
@@ -67,7 +78,7 @@ const SignUp = () => {
             id="userEmail"
             onChange={event => onChangeHandler(event)}
           />
-          <label htmlFor="userPassword" className="block">
+          <label htmlFor="userPassword" className="form form label, legend">
             Password:
           </label>
           <input
@@ -80,7 +91,7 @@ const SignUp = () => {
             onChange={event => onChangeHandler(event)}
           />
           <button
-            className="bg-green-400 hover:bg-green-500 w-full py-2 text-white"
+            className="form button"
             onClick={event => {
               createUserWithEmailAndPasswordHandler(event, email, password);
             }}
@@ -88,14 +99,25 @@ const SignUp = () => {
             Sign up
           </button>
         </form>
+<<<<<<< HEAD
+        <p className="form form textarea">or</p>
+        <button
+          className="bg-red-500 hover:bg-red-600 w-full py-2 text-white"
+        >
+          Sign In with Google
+        </button>
+=======
+>>>>>>> master
         <p className="text-center my-3">
           Already have an account?{" "}
           <Link to="/login" className="text-blue-500 hover:text-blue-600">
             Sign In with Google Here
           </Link>
         </p>
+        <Footer />
       </div>
     </div>
+    
   );
 };
 export default SignUp;

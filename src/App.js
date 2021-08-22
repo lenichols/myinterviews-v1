@@ -5,21 +5,23 @@ import Login from './components/Login';
 import PrivacyPolicy from './components/PrivacyPolicy';
 import Dashboard from './components/Dashboard';
 import { LoginProvider } from "./components/LoginContext";
+import AddInterview from "./components/AddInterview";
 
 export const LoginUserContext = React.createContext();
 
 function App() {
   return (
-    <Router>
+    <Router>  
       <LoginProvider>
         <Switch> 
           <SignUp path="/signup"/>
-          <Route path="/login" component={Login}/>
+          <Route path="/login" component={Login} />
           <Route path="/dashboard" component={Dashboard}/>
+          <Route path="/AddInterview" component={AddInterview}/>
           <PrivacyPolicy path="/privacy"/>
-        </Switch> 
-     </LoginProvider>
-  </Router>
+        </Switch>
+      </LoginProvider>
+    </Router>
   );
 }
 export default App;

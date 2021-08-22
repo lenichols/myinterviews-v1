@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import './AddInterview.css'
 
 
 const AddInterview = ({ onAdd }) => {
@@ -25,6 +26,7 @@ const AddInterview = ({ onAdd }) => {
         setDay('');
     }
     return (
+        <div className="page" id="AddInterview">
         <form className="add-form" onSubmit={saveInterview}>
             <div className="form-control">
                 <label>Company Name</label>
@@ -41,6 +43,7 @@ const AddInterview = ({ onAdd }) => {
             </div>
             <input type="submit" className="btn btn-block" value="save" />
         </form>
+        </div>
     )
 }
 
