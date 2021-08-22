@@ -8,7 +8,7 @@ import { useLogin, useLoginUpdate } from "../components/LoginContext";
 const firebaseConfig = {
     apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
     authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
-    databaseURL: process.env.REACT_APP_FIREBASE_DATABASE_URL,
+    firestoreURL: process.env.REACT_APP_FIREBASE_firestore_URL,
     projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
     storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
     messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGE_SENDERS_ID,
@@ -18,9 +18,11 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 
 export const auth = firebase.auth();
+
 export const firestore = firebase.firestore();
 
 const provider = new firebase.auth.GoogleAuthProvider();
+const getUserId = window.localStorage.getItem("userid");
 
 // const [displayName, setDisplayName] = useState('');
 // const [isLoggedIn, setIsLoggedIn] = useState('');
@@ -33,7 +35,7 @@ export const signInWithGoogle = () => {
       var token = credential.accessToken;
       // The signed-in user info.
       var user = result.user;
-      
+      window.localStorage.setItem("userid", JSON.stringify(result.uid));
     }).catch((error) => {
       console.log("error: ", error);
     });
@@ -48,14 +50,11 @@ const e1 = function()  {
   return u.toString();
 }
 
-
-
 export const generateUserDocument = async (usercred, password) => {
   if (!usercred) return;
   const uid = e1();
   const userRef = firestore.doc(`users/${uid}`);
   const snapshot = await userRef.get();
-
   if (!snapshot.exists) {
     const { email, displayName, photoURL } = usercred;
     try {
@@ -71,20 +70,55 @@ export const generateUserDocument = async (usercred, password) => {
 };
 
 const getUserDocument = async uid => {
-
-  if (!uid) return null;
-
+  if (!uid) return null
   try {
     const userDocument = await firestore.doc(`users/${uid}`).get();
-
     return {
       uid,
       ...userDocument.data()
     };
-
-    //redirect
-
+    //redirec
   } catch (error) {
     console.error("Error fetching user", error);
   }
 };
+
+const saveInterview = async payload => {
+  if (!payload) return null;
+  try {
+    auth.firestore().ref('interviews/' + getUserId).set({
+        // company: payload.company,
+        // date: payload.date,
+        // note: payload.note
+    });
+  } catch (error) {
+    console.error("Error creating interview", error);
+  }
+}
+
+const getInterviews = async () => {
+  const dbRef = firebase.firestore().ref();
+  dbRef.child("interviews").child(getUserId).get().then((snapshot) => {
+    if (snapshot.exists()) {
+      console.log(snapshot.val());
+    } else {
+      console.log("No data available");
+    }
+  }).catch((error) => {
+    console.error(error);
+  });
+}
+
+const removeInterviews = async itemToRemove => {
+  try {
+    auth.firestore().ref('interviews/' + getUserId + '/' + itemToRemove).remove()
+    .then(function() {
+      console.log("Remove succeeded.")
+    })
+    .catch(function(error) {
+      console.log("Remove failed: " + error.message)
+    });
+  } catch (error) {
+    console.error("Error calling remove interview", error);
+  }
+}

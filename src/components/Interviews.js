@@ -1,9 +1,9 @@
+import React from 'react';
 import Interview from './Interview'
 import './Interviews.css'
 
 const Interviews = ({ interviews, onDelete }) => {
     return (
-        <>
         <div className="page" id="login">
         <div className="">
           <header>
@@ -13,7 +13,6 @@ const Interviews = ({ interviews, onDelete }) => {
           </header>
            </div>
           </div>
-        </>
     )
 }
 
