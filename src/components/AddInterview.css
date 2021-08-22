@@ -1,11 +1,15 @@
 #AddInterview {
-    background-image: url("../images/grid.png"), url("../images/mask.png"), url("../images/background.png");
+    /* background-image: url("../images/grid.png"), url("../images/mask.png"), url("../images/background.png"); */
     background-position: 75vw 60vh, 0, 12vw;
     background-repeat: no-repeat;
     background-size: 12%, cover, cover;
 
 }
 
+.interview-well {
+    padding: 7%;
+    display: block;
+}
 /* Form page styles */
 #form header {
     background-color: var(--brand-red);

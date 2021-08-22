@@ -1,10 +1,11 @@
+import React from "react";
 import { red } from 'chalk'
 import { FaTimes } from 'react-icons/fa'
 import './Interviews.css'
 
 const Interview = ({ interview, onDelete }) => {
     return (
-        <div className="container">
+        <div className="">
         <header>
             <div className="task">
                 <h3>{interview.companyName}

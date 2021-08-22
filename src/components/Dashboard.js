@@ -94,16 +94,17 @@ const Dashboard = () => {
     })
   
     const deleteInterview = (id => {
-      console.log('deelete', id);
+      console.log('delete', id);
       setInterviews(interviews.filter((interview) => interview.id !== id))
     })
 
 
 
     return (
-        <div className="container">
+        <div className="">
         <Header onAdd={() => setShowAddInterview(!showAddInterview)} showAdd={showAddInterview} />
         {/* { isLoggedIn = false ? <div> YES I AM</div> : <div>NO IM NOT</div>} */}
+       
 
       {showAddInterview && <AddInterview onAdd={addInterview} />}
       {interviews.length > 0 ? (<Interviews 

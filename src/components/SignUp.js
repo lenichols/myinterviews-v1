@@ -96,6 +96,12 @@ const SignUp = () => {
             Sign up
           </button>
         </form>
+        <p className="form form textarea">or</p>
+        <button
+          className="bg-red-500 hover:bg-red-600 w-full py-2 text-white"
+        >
+          Sign In with Google
+        </button>
         <p className="text-center my-3">
           Already have an account?{" "}
           <Link to="/login" className="text-blue-500 hover:text-blue-600">
