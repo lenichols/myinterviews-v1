@@ -1,3 +1,4 @@
+import React from "react";
 import { red } from 'chalk'
 import { FaTimes } from 'react-icons/fa'
 import './Interviews.css'

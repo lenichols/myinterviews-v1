@@ -8,7 +8,7 @@ import { useLogin, useLoginUpdate } from "../components/LoginContext";
 const firebaseConfig = {
     apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
     authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
-    databaseURL: process.env.REACT_APP_FIREBASE_DATABASE_URL,
+    firestoreURL: process.env.REACT_APP_FIREBASE_firestore_URL,
     projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
     storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
     messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGE_SENDERS_ID,
@@ -22,7 +22,6 @@ export const auth = firebase.auth();
 export const firestore = firebase.firestore();
 
 const provider = new firebase.auth.GoogleAuthProvider();
-const database = firebase.database();
 const getUserId = window.localStorage.getItem("userid");
 
 // const [displayName, setDisplayName] = useState('');
@@ -87,7 +86,7 @@ const getUserDocument = async uid => {
 const saveInterview = async payload => {
   if (!payload) return null;
   try {
-    auth.database().ref('interviews/' + getUserId).set({
+    auth.firestore().ref('interviews/' + getUserId).set({
         // company: payload.company,
         // date: payload.date,
         // note: payload.note
@@ -98,7 +97,7 @@ const saveInterview = async payload => {
 }
 
 const getInterviews = async () => {
-  const dbRef = firebase.database().ref();
+  const dbRef = firebase.firestore().ref();
   dbRef.child("interviews").child(getUserId).get().then((snapshot) => {
     if (snapshot.exists()) {
       console.log(snapshot.val());
@@ -112,7 +111,7 @@ const getInterviews = async () => {
 
 const removeInterviews = async itemToRemove => {
   try {
-    auth.database().ref('interviews/' + getUserId + '/' + itemToRemove).remove()
+    auth.firestore().ref('interviews/' + getUserId + '/' + itemToRemove).remove()
     .then(function() {
       console.log("Remove succeeded.")
     })
