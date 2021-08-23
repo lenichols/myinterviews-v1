@@ -1,29 +1,23 @@
-import React, { useState, useEffect, useContext } from 'react'
+import React, { useState, createContext } from 'react'
 import Header from './Header';
 import Interviews from './Interviews';
 import AddInterview from './AddInterview';
 import Footer from './Footer';
-import { useHistory } from "react-router-dom";
-import { auth } from "../firebase/firebase";
-// import { LoginContext } from "./LoginContext";
-import { LoginUserContext } from "../App"
-import { useLogin, useLoginUpdate } from "./LoginContext";
+import { useLoginState } from "./LoginContext";
+import { auth, saveInterview } from '../firebase/firebase';
 
 
+export const InterviewContext = createContext();
 
 const Dashboard = () => {
 
+
+    const [toggleState, setToggleState] = useState("Close");
+    // const [displayName] = useState();
     // const [displayName, setDisplayName] = useState('');
-    //let [setIsLoggedIn] = useState();
-    // const [error, setError] = useState(null);
-    // let history = useHistory();
 
-    // let isLoggedIn  = useContext(LoginUserContext);
+    const displayNameFound = useLoginState();
 
-    //let { isLoggedIn, setIsLoggedIn } = useContext(LoginContext);
-    //let { displayName, setDisplayName } = useContext(LoginContext);
-
-    const [showAddInterview, setShowAddInterview] = useState(false)
 
     const [interviews, setInterviews] = useState([
         {
@@ -55,42 +49,15 @@ const Dashboard = () => {
             reminder: false
         }
     ]);
-
-    //useLogin();
-
-
-    // useEffect(() => {
-    //   auth.onAuthStateChanged((user) => {
-    //     if (user) {
-    //       let userobj = user;
-    //       setIsLoggedIn = true;
-    //       //setDisplayName = userobj["displayName"];
-    //       history.push("/dashboard");
-
-    //     } else {
-    //       console.log("LOGIN: User is signed out");
-    //       setIsLoggedIn = false;
-    //       history.push("/login");
-    //     }
-    //   });
-    // }, []);
-
-    // const onLogOutNow = (() => {
-    //   auth.signOut().then(() => {
-    //       console.log("logged out");
-    //       isLoggedIn(false);
-    //       history.push("/login");
-    //   }).catch((error) => {
-    //       console.log("logged out error: ", error);
-    //   })
-    // })
-
   
     const addInterview = (interview => {
       console.log("add", interview);
       const id = Math.floor(Math.random() * 10000) + 1;
-      const newInterviewEntry = { id, ...interview }
+      const newInterviewEntry = { id, ...interview };
+      saveInterview(newInterviewEntry);
       setInterviews([...interviews, newInterviewEntry]);
+      let setTheContext = (toggleState === "Open" ? "Close" : "Open");
+      setToggleState(setTheContext);
     })
   
     const deleteInterview = (id => {
@@ -98,22 +65,21 @@ const Dashboard = () => {
       setInterviews(interviews.filter((interview) => interview.id !== id))
     })
 
-
-
     return (
-        <div className="">
-        <Header onAdd={() => setShowAddInterview(!showAddInterview)} showAdd={showAddInterview} />
-        {/* { isLoggedIn = false ? <div> YES I AM</div> : <div>NO IM NOT</div>} */}
-       
-
-      {showAddInterview && <AddInterview onAdd={addInterview} />}
-      {interviews.length > 0 ? (<Interviews 
-        interviews={interviews} 
-        onDelete={deleteInterview}
-      />) : ( 'No Tasks to Show!') } 
-      <Footer />
-      </div>
+        <div>
+          <InterviewContext.Provider value={{ toggleState, setToggleState }}>
+            <Header />
+            hello { displayNameFound }
+              { toggleState === "Open" ? (<AddInterview onAdd={ addInterview }  />) : ''}
+              { interviews.length > 0 ? (<Interviews interviews={ interviews } onDelete={ deleteInterview } />) : ( 'No Tasks to Show!') } 
+              </InterviewContext.Provider>
+            <Footer />
+        </div>
     )
+}
+
+Dashboard.defaultProps = {
+  addInterviewOnce: "Open"
 }
 
 export default Dashboard

@@ -6,6 +6,19 @@
 
 }
 
+.details {
+    font-size: 2.7rem;
+    margin-bottom: 40px;
+}
+
+#addSaveButtn {
+    float: right;
+}
+
+.txtMed {
+    max-height: 20%;
+}
+
 .interview-well {
     padding: 7%;
     display: block;

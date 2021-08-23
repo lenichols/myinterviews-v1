@@ -9,6 +9,16 @@
 
 }
 
+.intervews-section {
+  background-color: #D34836;
+
+}
+
+.interview-well {
+  padding: 7%;
+  display: block;
+}
+
 #interviews {
     background-color: var(--brand-red);
   }

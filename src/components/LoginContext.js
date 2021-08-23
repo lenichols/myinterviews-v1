@@ -4,6 +4,7 @@ import { auth, signInWithGoogle } from "../firebase/firebase";
 import { useHistory } from "react-router-dom";
 export const LoginUserContext = createContext();
 export const LoginUserUpdateContext = createContext();
+export const LoginStateContext = createContext();
 export const LogoutUserContext = createContext();
 
 export function useLogin() {
@@ -12,6 +13,10 @@ export function useLogin() {
 
 export function useLoginUpdate() {
     return useContext(LoginUserUpdateContext);
+}
+
+export function useLoginState() {
+  return useContext(LoginStateContext);
 }
 
 export function useLogout() {
@@ -42,27 +47,11 @@ let history = useHistory();
       });
     }
 
-    function getLoginState() {
-        console.log("calleed login state");
-        auth.onAuthStateChanged((user) => {
-          if (user) {
-            let userobj = user;
-            setIsLoggedIn(true);
-            setDisplayName(userobj["displayName"]);
-            history.push("/dashboard");
-          } else {
-            setIsLoggedIn(false);
-            // return signInWithGoogle();
-  
-          }
-        });
-      }
-
     function onLogOut(e) {
         auth.signOut().then(() => {
             console.log("logged out");
             setIsLoggedIn(false);
-            //return history.push("/login");
+            return history.push("/login");
         }).catch((error) => {
             console.log("logged out error: ", error);
         })
@@ -70,11 +59,14 @@ let history = useHistory();
 
     return (
         <LoginUserContext.Provider value={checkLoginState}>
+            <LoginStateContext.Provider value={displayName}>
+
             {/* <LoginUserUpdateContext.Provider value={checkLoginState} > */}
                 <LogoutUserContext.Provider value={onLogOut} >
                     { children }
                 </LogoutUserContext.Provider>
             {/* </LoginUserUpdateContext.Provider> */}
+            </LoginStateContext.Provider>
         </LoginUserContext.Provider>
     )
 
