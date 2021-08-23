@@ -3,7 +3,6 @@
     background-position: 75vw 60vh, 0, 12vw;
     background-repeat: no-repeat;
     background-size: 12%, cover, cover;
-
 }
 
 .details {
@@ -20,7 +19,7 @@
 }
 
 .interview-well {
-    padding: 7%;
+    padding: 2% 7% 3% 7%;
     display: block;
 }
 /* Form page styles */

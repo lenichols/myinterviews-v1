@@ -5,12 +5,12 @@ import AddInterview from './AddInterview';
 import Footer from './Footer';
 import { useLoginState } from "./LoginContext";
 import { auth, saveInterview } from '../firebase/firebase';
+import './Dashboard.css'
 
 
 export const InterviewContext = createContext();
 
 const Dashboard = () => {
-
 
     const [toggleState, setToggleState] = useState("Close");
     // const [displayName] = useState();
@@ -69,7 +69,7 @@ const Dashboard = () => {
         <div>
           <InterviewContext.Provider value={{ toggleState, setToggleState }}>
             <Header />
-            hello { displayNameFound }
+            <div className="welcome">Welcome { displayNameFound }!</div>
               { toggleState === "Open" ? (<AddInterview onAdd={ addInterview }  />) : ''}
               { interviews.length > 0 ? (<Interviews interviews={ interviews } onDelete={ deleteInterview } />) : ( 'No Tasks to Show!') } 
               </InterviewContext.Provider>
@@ -83,3 +83,4 @@ Dashboard.defaultProps = {
 }
 
 export default Dashboard
+

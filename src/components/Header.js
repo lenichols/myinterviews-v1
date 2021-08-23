@@ -19,7 +19,7 @@ const Header = ({ title }) => {
     return (
         <header className="intheader">
             <nav className="navbar navbar-light justify-content-between">
-                <a className="navbar-brand"><h1>{title}</h1></a>
+                <a className="navbar-brand"><h1 id="header-title">{title}</h1></a>
                 <form className="form-inline">
                 <Button buttonstyle="btn btn-lg btn-block btn-dark float-right" text={toggleState === "Open" ? 'Close' : 'Add Interview'} onClick={(e) => goCreateInterview(e)} buttonwidth="350px"/>  
                 <button type="button" className="btn float-right" onClick={(e) => logoutUpdate(e)}>Logout</button> 
