@@ -3,11 +3,23 @@
     background-position: 75vw 60vh, 0, 12vw;
     background-repeat: no-repeat;
     background-size: 12%, cover, cover;
+}
 
+.details {
+    font-size: 2.7rem;
+    margin-bottom: 40px;
+}
+
+#addSaveButtn {
+    float: right;
+}
+
+.txtMed {
+    max-height: 20%;
 }
 
 .interview-well {
-    padding: 7%;
+    padding: 2% 7% 3% 7%;
     display: block;
 }
 /* Form page styles */

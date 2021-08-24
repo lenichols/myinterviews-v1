@@ -7,3 +7,8 @@
 .pull-button-right {
     float: right;
 }
+
+h1#header-title {
+    color: white;
+    font-weight: normal;
+}

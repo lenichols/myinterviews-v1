@@ -9,6 +9,22 @@
 
 }
 
+.task {
+  background-color: #ead1cea6;
+  padding: 3%;
+  border: 1px solid #d19999;
+  margin-bottom: 20px;
+}
+
+.intervews-section {
+  background-color: #e68578;
+}
+
+.interview-well {
+  padding: 7%;
+  display: block;
+}
+
 #interviews {
     background-color: var(--brand-red);
   }

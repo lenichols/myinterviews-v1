@@ -1,79 +1,134 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import './AddInterview.css'
+import { InterviewContext } from './Dashboard';
 
 
 const AddInterview = ({ onAdd }) => {
-    const [companyName, setCompanyName] = useState('')
-    const [note, setNote] = useState('')
-    const [day, setDay] = useState('')
+
+    const { toggleState, setToggleState } = useContext(InterviewContext);
+
+    const [values, setValues] = useState({
+        date: '',
+        company: '',
+        category: '',
+        experience: '',
+        note: ''
+    });
 
     const saveInterview = (e) => {
         e.preventDefault();
-        if(!companyName) {
-            alert('Please add Company Name');
+        if(!values.company) {
+            alert('Please add a Company Name');
             return
         }
 
-        if(!note) {
-            alert('Please add Company Name');
+        if(!values.date) {
+            alert('Please add a Date');
             return
         }
 
-        onAdd({ companyName, note, day })
+        if(!values.category) {
+            alert('Please add a Category');
+            return
+        }
 
-        setCompanyName('');
-        setNote('');
-        setDay('');
+        if(!values.experience) {
+            alert('Please add your Experience');
+            return
+        }
+
+        if(!values.note) {
+            alert('Please add a Note');
+            return
+        }
+        onAdd(values);
+        
     }
+
+    const changeDate = (event) => {
+        event.persist();
+        setValues((values) => ({
+            ...values,
+            date: event.target.value,
+        }));
+    };
+
+    const changeCompany = (event) => {
+        event.persist();
+        setValues((values) => ({
+            ...values,
+            company: event.target.value,
+        }));
+    };
+
+    const changeCategory= (event) => {
+        event.persist();
+        setValues((values) => ({
+            ...values,
+            category: event.target.value,
+        }));
+    };
+
+    const changeExperience= (event) => {
+        event.persist();
+        setValues((values) => ({
+            ...values,
+            experience: event.target.value,
+        }));
+    };
+
+    const changeNotes = (event) => {
+        event.persist();
+        setValues((values) => ({
+            ...values,
+            note: event.target.value,
+        }));
+    };
+
     return (
-        <div className="" id="AddInterview">
-             <form action="" className="form-control">
-                 <div className='row interview-well'>
-                <div className="details col-lg-6">
+            <div className='row interview-well'>
+                {/* <form onSubmit={saveInterview}> */}
+                <div className="col-lg-12">
+                    <div className="col-lg-3 details">
+                        Enter The Details of your Interview
+                    </div>
+                </div>
+                <br />
+                <br />
+                <br />
+                
+                <div className="col">
                     <label htmlFor="date">Date</label>
-                    <input type="date" name="date" id="date" className="form-control" />
-
+                    <input type="date" name="date" className="form-control" value={values.date} onChange={changeDate} />
+                    <br />
                     <label htmlFor="company">Company</label>
-                    <input type="text" className="form-control"/>
-
+                    <input type="text" name="company" className="form-control" value={values.company} onChange={changeCompany} />
+                    <br />
                     <label htmlFor="category">Category</label>
-                    <select name="category" id="category" className="form-control">
-                        <option value="Technology" selected>Technology</option>
+                    <select name="category" id="category" className="form-control" value={values.category} onChange={changeCategory} >
+                        <option value="Technology">Technology</option>
                         <option value="Design">Design</option>
                     </select>
-
-                    <fieldset>
-                        <legend>Experience</legend>
-                        <input type="radio" id="positive" name="experience" className="form-control"/>
-                        <label htmlFor="positive">Positive</label>
-                        <input type="radio" id="negative" name="experience" className="form-control" />
-                        <label htmlFor="negative">Negative</label>
-                    </fieldset>
+                    < br/>
+                    <div className="form-check form-check-inline">
+                        <input className="form-check-input" type="radio" name="experience" id="inlineRadio1" value="Positive" onChange={changeExperience} />
+                        <label className="form-check-label" htmlFor="inlineRadio1">Positive</label>
+                    </div>
+                    <div className="form-check form-check-inline">
+                        <input className="form-check-input" type="radio" name="experience" id="inlineRadio2" value="Negative" onChange={changeExperience}  />
+                        <label className="form-check-label" htmlFor="inlineRadio2">Negative</label>
+                    </div>
+                
                 </div>
-                <div className="note col-lg-6">
+                <div className="col">
                     <label htmlFor="note">Note</label>
-                    <textarea name="note" id="note" cols="30" rows="50" className="form-control"></textarea>
-                    <button className="btn btn-lg btn-block btn-dark">Add an interview</button>
+                    <textarea name="note" id="note" cols="30" rows="10" className="form-control" value={values.note} onChange={changeNotes} ></textarea>
+                    <br />
+                    <div className="form-group text-right">
+                        <button id="addSaveButtn" type="button" onClick={(e) => saveInterview(e)} className="btn btn-lg btn-block btn-dark d-inline float-right">Add an interview</button>
+                    </div>
                 </div>
-                </div>
-            </form>
-        {/* <form className="add-form" onSubmit={saveInterview}>
-            <div className="form-control">
-                <label>Company Name</label>
-                <input type="text" value={companyName} onChange={(e) => setCompanyName(e.target.value)} />
             </div>
-            <div className="form-control">
-                <label>Notes</label>
-                <textarea rows="5" type="text" placeholder="Add some notes..." value={note} onChange={(e) => setNote(e.target.value)}>
-                </textarea>
-            </div>
-            <div className="form-control">
-                <label>Day & Time</label>
-                <input type="text" value={day} onChange={(e) => setDay(e.target.value)} />
-            </div>
-            <input type="submit" className="btn btn-block" value="save" />
-        </form> */}
-        </div>
     )
 }
 

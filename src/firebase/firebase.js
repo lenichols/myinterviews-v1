@@ -24,6 +24,16 @@ export const firestore = firebase.firestore();
 const provider = new firebase.auth.GoogleAuthProvider();
 const getUserId = window.localStorage.getItem("userid");
 
+const e1 = function()  {
+  let u = '', i = 0;
+  while(i++ < 36) {
+      var c = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'[i-1],r=Math.random()*16|0,v=c=='x'?r:(r&0x3|0x8);
+      u += (c=='-'|| c=='4') ? c: v.toString(16)
+  }
+return u.toString();
+}
+
+
 // const [displayName, setDisplayName] = useState('');
 // const [isLoggedIn, setIsLoggedIn] = useState('');
 // const [error, setError] = useState(null);
@@ -35,20 +45,13 @@ export const signInWithGoogle = () => {
       var token = credential.accessToken;
       // The signed-in user info.
       var user = result.user;
-      window.localStorage.setItem("userid", JSON.stringify(result.uid));
+      window.localStorage.setItem("userid", JSON.stringify(user.uid));
     }).catch((error) => {
       console.log("error: ", error);
     });
 }
 
-const e1 = function()  {
-    let u = '', i = 0;
-    while(i++ < 36) {
-        var c = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'[i-1],r=Math.random()*16|0,v=c=='x'?r:(r&0x3|0x8);
-        u += (c=='-'|| c=='4') ? c: v.toString(16)
-    }
-  return u.toString();
-}
+
 
 export const generateUserDocument = async (usercred, password) => {
   if (!usercred) return;
@@ -83,14 +86,34 @@ const getUserDocument = async uid => {
   }
 };
 
-const saveInterview = async payload => {
+export const saveInterview = async payload => {
+
+  console.log("payload", payload);
   if (!payload) return null;
+  const uid = e1();
+
+
+  const interviewDb = firestore.collection('interviews'); 
+  let xxx = getUserId.replace(/^"(.+)"$/,'$1');
+
+  let newobj = '{ ' + uid + '} : ' + { company: payload.company,
+  date: payload.date,
+  note: payload.note,
+  experience: payload.experience,
+  category: payload.category    
+};
+
+
   try {
-    auth.firestore().ref('interviews/' + getUserId).set({
-        // company: payload.company,
-        // date: payload.date,
-        // note: payload.note
-    });
+    interviewDb.doc(xxx).set({ interview : 
+    [{ id: uid, company: payload.company,
+      date: payload.date,
+      note: payload.note,
+      experience: payload.experience,
+      category: payload.category    
+    }]
+  })
+  
   } catch (error) {
     console.error("Error creating interview", error);
   }

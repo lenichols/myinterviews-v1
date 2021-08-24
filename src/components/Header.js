@@ -1,29 +1,30 @@
-import React, {useState, useEffect, useContext} from "react";
+import React, {useState, useEffect, useContext, createContext, setContext} from "react";
 import PropTypes from 'prop-types';
 import Button from './Button';
 import { useLogout } from "./LoginContext";
 import './Header.css';
+import { InterviewContext } from './Dashboard';
 
-const Header = ({ title, onAdd, showAdd }) => {
+const Header = ({ title }) => {
+
+    const { toggleState, setToggleState } = useContext(InterviewContext);
     let logoutUpdate  = useLogout();
 
-    const onClick = (e) => {
-        console.log("header button click");
+    const goCreateInterview = (e) => {
+        e.preventDefault();
+        let setTheContext = (toggleState === "Open" ? "Close" : "Open");
+        setToggleState(setTheContext);
     }
-
     
     return (
         <header className="intheader">
             <nav className="navbar navbar-light justify-content-between">
-                <a className="navbar-brand"><h1>{title}</h1></a>
+                <a className="navbar-brand"><h1 id="header-title">{title}</h1></a>
                 <form className="form-inline">
-                <Button buttonstyle="btn btn-lg btn-block btn-dark float-right" text={showAdd ? 'Close' : 'Add Interview'} onClick={onAdd} buttonwidth="350px"/>  <button type="button" className="btn float-right" onClick={(e) => logoutUpdate(e)}>Logout</button> 
+                <Button buttonstyle="btn btn-lg btn-block btn-dark float-right" text={toggleState === "Open" ? 'Close' : 'Add Interview'} onClick={(e) => goCreateInterview(e)} buttonwidth="350px"/>  
+                <button type="button" className="btn float-right" onClick={(e) => logoutUpdate(e)}>Logout</button> 
                 </form>
-               
-                </nav>
-            <br/>
-            {/* <Link to="login">Logout</Link> */}
-            
+            </nav>
         </header>
     )
 }

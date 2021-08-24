@@ -8,7 +8,7 @@ const Interview = ({ interview, onDelete }) => {
         <div className="">
         <header>
             <div className="task">
-                <h3>{interview.companyName}
+                <h3>{interview.company}
                 <FaTimes 
                     style={{ color: 'red', cursor: 'pointer' }} 
                     onClick={() => onDelete(interview.id)}

@@ -4,7 +4,7 @@ import './Interviews.css'
 
 const Interviews = ({ interviews, onDelete }) => {
     return (
-        <div className="page" id="login">
+      <div className='row interview-well intervews-section'>
         <div className="">
           <header>
            {interviews.map((interview)=> (

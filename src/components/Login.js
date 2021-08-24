@@ -6,7 +6,6 @@ import Footer from './Footer';
 import './Login.css';
 import { signInWithGoogle, auth } from "../firebase/firebase";
 // import { LoginContext } from "./LoginContext";
-import { LoginUserContext } from "../App"
 import { useLogin } from "./LoginContext";
 
 
