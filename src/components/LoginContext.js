@@ -2,6 +2,7 @@
 import React, {useState, useEffect, useContext, createContext } from "react";
 import { auth, signInWithGoogle } from "../firebase/firebase";
 import { useHistory } from "react-router-dom";
+import useLocalStorage from "./helpers/useLocalStorage";
 export const LoginUserContext = createContext();
 export const LoginUserUpdateContext = createContext();
 export const LoginStateContext = createContext();
@@ -26,7 +27,9 @@ export function useLogout() {
 export function LoginProvider({ children}) {
 
 const [isLoggedIn, setIsLoggedIn] = useState(false);
-const [displayName, setDisplayName] = useState('');
+const [displayName, setDisplayName] = useLocalStorage('name', '');
+
+
 let history = useHistory();
 
   function checkLoginState() {
@@ -35,6 +38,7 @@ let history = useHistory();
           let userobj = user;
           setIsLoggedIn(true);
           setDisplayName(userobj["displayName"]);
+          window.localStorage
           history.push("/dashboard");
         } else {
           console.log("LOGIN: User is signed out");

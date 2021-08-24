@@ -3,22 +3,15 @@ import Header from './Header';
 import Interviews from './Interviews';
 import AddInterview from './AddInterview';
 import Footer from './Footer';
-import { useLoginState } from "./LoginContext";
-import { auth, saveInterview } from '../firebase/firebase';
-import './Dashboard.css'
-
+import { saveInterview } from '../firebase/firebase';
+import './Dashboard.css';
+import useLocalStorage from './helpers/useLocalStorage';
 
 export const InterviewContext = createContext();
 
 const Dashboard = () => {
-
     const [toggleState, setToggleState] = useState("Close");
-    // const [displayName] = useState();
-    // const [displayName, setDisplayName] = useState('');
-
-    const displayNameFound = useLoginState();
-
-
+    const [displayName, setDisplayName] = useLocalStorage("name", "");
     const [interviews, setInterviews] = useState([
         {
             id: 1,
@@ -69,7 +62,7 @@ const Dashboard = () => {
         <div>
           <InterviewContext.Provider value={{ toggleState, setToggleState }}>
             <Header />
-            <div className="welcome">Welcome { displayNameFound }!</div>
+            <div className="welcome">Welcome { displayName }!</div>
               { toggleState === "Open" ? (<AddInterview onAdd={ addInterview }  />) : ''}
               { interviews.length > 0 ? (<Interviews interviews={ interviews } onDelete={ deleteInterview } />) : ( 'No Tasks to Show!') } 
               </InterviewContext.Provider>
