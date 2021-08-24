@@ -1,11 +1,11 @@
 
  /* Login page styles */
 #login {
-    /* background-image: url("../images/grid.png"), url("../images/mask.png"), url("../images/background.png"); */
+    background-image: url("../images/grid.png"), url("../images/mask.png"), url("../images/background.png");
     background-position: 75vw 60vh, 0, 12vw;
     background-repeat: no-repeat;
     background-size: 12%, cover, cover;
-
+    padding: 50% 7% 7% 7%;
 }
 
 #login .container {
