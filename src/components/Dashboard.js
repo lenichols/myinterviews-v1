@@ -3,13 +3,13 @@ import Header from './Header';
 import Interviews from './Interviews';
 import AddInterview from './AddInterview';
 import Footer from './Footer';
-import { saveInterview } from '../firebase/firebase';
+import { removeInterviews, saveInterview } from '../firebase/firebase';
 import './Dashboard.css';
 import useLocalStorage from './helpers/useLocalStorage';
 
 export const InterviewContext = createContext();
 
-const Dashboard = () => {
+const Dashboard = ({interview, id}) => {
     const [toggleState, setToggleState] = useState("Close");
     const [displayName, setDisplayName] = useLocalStorage("name", "");
     const [interviews, setInterviews] = useState([
@@ -42,6 +42,7 @@ const Dashboard = () => {
             reminder: false
         }
     ]);
+
   
     const addInterview = (interview => {
       console.log("add", interview);
@@ -54,7 +55,7 @@ const Dashboard = () => {
     })
   
     const deleteInterview = (id => {
-      console.log('delete', id);
+      removeInterviews(id);
       setInterviews(interviews.filter((interview) => interview.id !== id))
     })
 
@@ -64,7 +65,8 @@ const Dashboard = () => {
             <Header />
             <div className="welcome">Welcome { displayName }!</div>
               { toggleState === "Open" ? (<AddInterview onAdd={ addInterview }  />) : ''}
-              { interviews.length > 0 ? (<Interviews interviews={ interviews } onDelete={ deleteInterview } />) : ( 'No Tasks to Show!') } 
+              <Interviews id={id} onDelete={ deleteInterview } /> 
+              
               </InterviewContext.Provider>
             <Footer />
         </div>

@@ -16,6 +16,7 @@ const firebaseConfig = {
   };
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
+const app = firebase.app()
 
 export const auth = firebase.auth();
 
@@ -23,6 +24,10 @@ export const firestore = firebase.firestore();
 
 const provider = new firebase.auth.GoogleAuthProvider();
 const getUserId = window.localStorage.getItem("userid");
+
+const db = app.firestore();
+
+export {db}
 
 const e1 = function()  {
   let u = '', i = 0;
@@ -105,13 +110,14 @@ export const saveInterview = async payload => {
 
 
   try {
-    interviewDb.doc(xxx).set({ interview : 
-    [{ id: uid, company: payload.company,
+    interviewDb.doc(xxx).set({
+      id: uid, 
+      company: payload.company,
       date: payload.date,
       note: payload.note,
       experience: payload.experience,
-      category: payload.category    
-    }]
+      category: payload.category,    
+      timestamp: firebase.firestore.FieldValue.serverTimestamp()
   })
   
   } catch (error) {
@@ -119,7 +125,7 @@ export const saveInterview = async payload => {
   }
 }
 
-const getInterviews = async () => {
+export const getInterviews = async () => {
   const dbRef = firebase.firestore().ref();
   dbRef.child("interviews").child(getUserId).get().then((snapshot) => {
     if (snapshot.exists()) {
@@ -132,9 +138,9 @@ const getInterviews = async () => {
   });
 }
 
-const removeInterviews = async itemToRemove => {
+export const removeInterviews = async itemToRemove => {
   try {
-    auth.firestore().ref('interviews/' + getUserId + '/' + itemToRemove).remove()
+    db.doc('interviews/' /*+ getUserId + '/'*/ + itemToRemove).delete()
     .then(function() {
       console.log("Remove succeeded.")
     })
