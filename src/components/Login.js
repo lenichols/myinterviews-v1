@@ -15,10 +15,9 @@ const SignIn = () => {
     let isLoggedIn  = useLogin();
 
     return (
-   <div className="row h-100" id="login">
-    {/* <div className="container"> */}
-         <div className="login google-auth">
-           <div className='container'>
+    <div className="login google-auth">
+           <div className='signincontainer'>
+             <div className="signindiv">
            <h2><span>{'>'}</span> My Interview <span>{'<'}</span></h2>
            <h1>Diary</h1>
            <h4>Document + Journal + Reflect</h4>             
@@ -29,9 +28,8 @@ const SignIn = () => {
           <p><a href="">Create an Account</a></p>
           </div>
          </div>
-       {/* </div> */}
-       <Footer />
-   </div>
+         <Footer/>
+       </div>
 )
 };
 export default SignIn;

@@ -7,6 +7,22 @@
     background-size: 12%, cover, cover;
     padding: 30% 7% 7% 7%;
 }
+.signincontainer {
+  flex: content;
+  padding-left: 5rem;
+  margin-top: 0rem;
+  min-height: 0rem;
+  padding-top: 10rem;
+  z-index: 0;
+}
+
+.signindiv {
+  text-align: center;
+  margin-top: -30rem;
+  margin-left: 0rem;
+  margin-right: 70rem;
+  z-index: 10;
+}
 
 
 .login .container {
