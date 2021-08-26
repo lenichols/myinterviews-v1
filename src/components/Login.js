@@ -19,7 +19,7 @@ const SignIn = () => {
       <div className="row">
            <div className="col-lg-4">
              <div className="text-center">
-                <h2><span>{'>'}</span> My Interview <span>{'<'}</span></h2>
+                <h2><span className="span">{'>'}</span> My Interview <span className="span">{'<'}</span></h2>
                 <h1>Diary</h1>
                 <h4>Document + Journal + Reflect</h4>             
                 {/* <div className="login google-auth"> */}

@@ -8,7 +8,7 @@ body {
 }
 
 .login {
-  padding-top: 10%;
+  padding-top: 20%;
 }
 
 .signincontainer {
@@ -65,5 +65,9 @@ body {
 
 .google-auth {
   position: relative;
+}
+
+.span {
+  color:#d34836;
 }
 
