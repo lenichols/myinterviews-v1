@@ -1,6 +1,7 @@
 import React, { useState, useContext } from 'react'
 import './AddInterview.css'
 import { InterviewContext } from './Dashboard';
+import firebase from 'firebase';
 
 
 const AddInterview = ({ onAdd }) => {
@@ -12,7 +13,8 @@ const AddInterview = ({ onAdd }) => {
         company: '',
         category: '',
         experience: '',
-        note: ''
+        note: '',
+        timestamp: firebase.firestore.FieldValue.serverTimestamp()
     });
 
     const saveInterview = (e) => {

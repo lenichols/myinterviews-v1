@@ -3,19 +3,20 @@ import { red } from 'chalk'
 import { FaTimes } from 'react-icons/fa'
 import './Interviews.css'
 
-const Interview = ({ interview, onDelete }) => {
+const Interview = ({ interview, id, onDelete, note, timestamp, date, experience, catergory, company }) => {
     return (
         <div className="">
         <header>
             <div className="task">
-                <h3>{interview.company}
+                <h3>{company}
                 <FaTimes 
                     style={{ color: 'red', cursor: 'pointer' }} 
-                    onClick={() => onDelete(interview.id)}
+                    onClick={() => onDelete(id)}
                 />
                 </h3>
-                <p>{interview.note}</p>
-                <p>{interview.day}</p>
+                <p>{new Date(timestamp.toDate()).toLocaleString()}</p>
+                <p>{note}</p>
+                <p>{date}</p>
                 </div>
             </header>
         </div>
