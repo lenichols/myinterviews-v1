@@ -15,18 +15,21 @@ const SignIn = () => {
     let isLoggedIn  = useLogin();
 
     return (
-    <div className="login google-auth">
-           <div className='signincontainer'>
-             <div className="signindiv">
-           <h2><span>{'>'}</span> My Interview <span>{'<'}</span></h2>
-           <h1>Diary</h1>
-           <h4>Document + Journal + Reflect</h4>             
-           {/* <div className="login google-auth"> */}
-            <button type="button" onClick={isLoggedIn} className=" btn btn-lg btn-block btn-black d-inline float-right">
-            Sign in with Google
-          </button>
-          <p><a href="">Create an Account</a></p>
-          </div>
+    <div className="login">
+      <div className="row">
+           <div className="col-lg-4">
+             <div className="text-center">
+                <h2><span>{'>'}</span> My Interview <span>{'<'}</span></h2>
+                <h1>Diary</h1>
+                <h4>Document + Journal + Reflect</h4>             
+                {/* <div className="login google-auth"> */}
+                  <button type="button" onClick={isLoggedIn} className="btn btn-danger btn-lg btn-block btn-black d-inline float-right google-button">
+                  Sign in with Google
+                </button>
+                <p><a href="">Create an Account</a></p>
+            </div>
+         </div>
+         
          </div>
          <Footer/>
        </div>
