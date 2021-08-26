@@ -17,7 +17,7 @@ const SignIn = () => {
     return (
     <div className="login">
       <div className="row">
-           <div className="col-lg-4">
+           <div className="col-lg-5 col-sm-12">
              <div className="text-center">
                 <h2><span>{'>'}</span> My Interview <span>{'<'}</span></h2>
                 <h1>Diary</h1>
